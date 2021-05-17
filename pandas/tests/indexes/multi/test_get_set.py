@@ -351,7 +351,7 @@ def test_set_levels_categorical(ordered):
     index = MultiIndex.from_arrays([list("xyzx"), [0, 1, 2, 3]])
 
     cidx = CategoricalIndex(list("bac"), ordered=ordered)
-    result = index.set_levels(cidx, 0)
+    result = index.set_levels(levels=cidx, level=0)
     expected = MultiIndex(levels=[cidx, [0, 1, 2, 3]], codes=index.codes)
     tm.assert_index_equal(result, expected)
 

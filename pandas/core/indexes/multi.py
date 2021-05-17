@@ -42,6 +42,7 @@ from pandas.util._decorators import (
     Appender,
     cache_readonly,
     doc,
+    deprecate_nonkeyword_arguments,
 )
 
 from pandas.core.dtypes.cast import coerce_indexer_dtype
@@ -807,6 +808,7 @@ class MultiIndex(Index):
 
         self._reset_cache()
 
+    @deprecate_nonkeyword_arguments(version="2.0", allowed_args=["self", "levels"])
     def set_levels(
         self, levels, level=None, inplace=None, verify_integrity: bool = True
     ):
@@ -994,6 +996,7 @@ class MultiIndex(Index):
 
         self._reset_cache()
 
+    @deprecate_nonkeyword_arguments(version="2.0", allowed_args=["self", "codes"])
     def set_codes(self, codes, level=None, inplace=None, verify_integrity: bool = True):
         """
         Set new codes on MultiIndex. Defaults to returning new index.
