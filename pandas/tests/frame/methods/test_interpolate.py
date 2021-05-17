@@ -342,3 +342,12 @@ class TestDataFrameInterpolate:
         expected = df.fillna(axis=axis, method=method)
         result = df.interpolate(method=method, axis=axis)
         tm.assert_frame_equal(result, expected)
+    
+    def test_drop_pos_args_deprecation(self):
+        df = DataFrame([(0.0, np.nan, -1.0, 1.0),(np.nan, 2.0, np.nan, np.nan)])
+        msg = (
+            r"Starting with Pandas version 2\.0 all argumnets of interpolate except for the "
+            r"arguments 'self' will be keyword-only"
+        )
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            df.interpolate("linear")
